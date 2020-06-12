@@ -134,10 +134,11 @@
         });
 
         let currentKey = null;
+        const allKeys =  document.querySelectorAll("[data-note]");
         const notePlayedText = document.getElementById('notePlayed');
         const pattern = new Tone.Pattern(function(time, note){
             synth.triggerAttackRelease(note, "4n");
-            const allKeys =  document.querySelectorAll("[data-note]");
+            
             allKeys.forEach(function(item){
                 item.classList.remove('active');
             });            
@@ -157,6 +158,9 @@
             if (patternPlay) {
                 patternPlay = false;
                 pattern.stop();
+                allKeys.forEach(function(item){
+                    item.classList.remove('active');
+                });   
             } else {
                 patternPlay = true;
                 Tone.Transport.start(0);
