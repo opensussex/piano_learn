@@ -108,6 +108,7 @@
             <li class="black key" data-note="D#4">D#</li>
             <li class="white spec key" data-note="E4">E</li>
           </ul>
+          <button id="play">Play</button>
     </body>
     <script type="text/javascript">
         const synth = new Tone.MonoSynth({
@@ -125,6 +126,25 @@
                 console.log(this.dataset.note);
                 synth.triggerAttackRelease(this.dataset.note, "8n");
             });
+        });
+
+        const pattern = new Tone.Pattern(function(time, note){
+	        console.log(note);
+            synth.triggerAttackRelease(note, "4n");
+        }, ["F3", "F#3", "G3", "C4"], "up");
+        
+        let patternPlay = false;
+        const playButton = document.getElementById('play');
+        playButton.addEventListener('click', function() {
+            console.log('!!!');
+            if (patternPlay) {
+                patternPlay = false;
+                pattern.stop();
+            } else {
+                patternPlay = true;
+                Tone.Transport.start(0);
+                pattern.start(0);
+            }
         });
 	</script>
 </html>
