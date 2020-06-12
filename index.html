@@ -85,7 +85,7 @@
                 border-radius:0 5px 5px 5px
             }
 
-            h1, h2, h3 {
+            h1, h2, h3, p {
                 text-align: center;
             }
         </style>
@@ -94,6 +94,12 @@
     <body>
         <h1>Piano!</h1>
         <h3>Taking a simple approach to learning the piano keys</h3>
+        <p>
+            <button id="play">Play</button>
+            <p id="notePlayed">
+
+            </p>
+        </p>
         <ul class="set">
             <li class="white key" data-note="F3">F</li>
             <li class="black key" data-note="F#3">F#</li>
@@ -108,7 +114,6 @@
             <li class="black key" data-note="D#4">D#</li>
             <li class="white spec key" data-note="E4">E</li>
           </ul>
-          <button id="play">Play</button>
     </body>
     <script type="text/javascript">
         const synth = new Tone.MonoSynth({
@@ -129,6 +134,7 @@
         });
 
         let currentKey = null;
+        const notePlayedText = document.getElementById('notePlayed');
         const pattern = new Tone.Pattern(function(time, note){
             synth.triggerAttackRelease(note, "4n");
             const allKeys =  document.querySelectorAll("[data-note]");
@@ -139,6 +145,7 @@
             currentKey = document.querySelectorAll("[data-note='"+note+"']");
             currentKey.forEach(function(item){
                 item.classList.add('active');
+                notePlayedText.innerHTML = note;
                 console.log(item);
                 
             });
