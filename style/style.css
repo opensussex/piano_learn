@@ -1,5 +1,6 @@
 * {
-    box-sizing:border-box
+    box-sizing:border-box;
+    font-family: 'Balsamiq Sans', cursive;
 }
 
 body {
@@ -80,4 +81,38 @@ ul li:last-child {
 
 h1, h2, h3, p {
     text-align: center;
+}
+
+.seq_bold {
+    font-weight: bold;
+}
+
+#sequenceList {
+    width: 25%;
+    margin: 0 auto;
+    text-align: center;
+    font-size:1.5em;
+}
+
+#sequenceControls {
+    width: 25%;
+    margin: 0 auto;
+    text-align:center;
+}
+
+#playBtn {
+    text-align:center;
+    font-size:1.5em;
+    color:white;
+    border:0;
+    padding:0.5em;
+    border-radius: 0.2em;
+}
+
+.stop {
+    background: crimson;
+}
+
+.play {
+    background:green;
 }
