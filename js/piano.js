@@ -14,7 +14,6 @@ const keys = document.getElementsByClassName('key');
 
 Array.from(keys).forEach(function(key) {
     key.addEventListener('mousedown', function() {
-        console.log(this.dataset.note);
         synth.triggerAttackRelease(this.dataset.note, "8n");
     });
 });
@@ -29,15 +28,10 @@ const sequenceListNotes = document.querySelectorAll("#sequenceList span");
 
 const pattern = new Tone.Pattern(function(time, note){
     synth.triggerAttackRelease(note, "4n");
-    sequenceListNotes.forEach(function(item){
-        item.classList.remove('seq_bold');
-    });
+    removeSequenceBold();
     let currentNote = document.getElementById('seq_' + this.index);
     currentNote.classList.add('seq_bold');
-    console.log(this.index);
-    allKeys.forEach(function(item){
-        item.classList.remove('active');
-    });            
+    removeActiveKey();          
     
     currentKey = document.querySelectorAll("[data-note='"+note+"']");
     currentKey.forEach(function(item){
@@ -54,14 +48,8 @@ playButton.addEventListener('click', function() {
         patternPlay = false;
         pattern.stop();
         this.innerHTML = 'Play';
-        
-        allKeys.forEach(function(item){
-            item.classList.remove('active');
-        });
-        
-        sequenceListNotes.forEach(function(item){
-            item.classList.remove('seq_bold');
-        });
+        removeActiveKey();
+        removeSequenceBold();
         this.classList.remove('stop');
         this.classList.add('play');
     } else {
@@ -73,3 +61,15 @@ playButton.addEventListener('click', function() {
         this.classList.remove('play');
     }
 });
+
+function removeSequenceBold() {
+    sequenceListNotes.forEach(function(item){
+        item.classList.remove('seq_bold');
+    });
+}
+
+function removeActiveKey() {
+    allKeys.forEach(function(item){
+        item.classList.remove('active');
+    });  
+}
