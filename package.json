@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/opensussex/piano_learn#readme",
   "devDependencies": {
-    "electron": "^9.0.3"
+    "electron": "^18.3.7"
   }
 }
